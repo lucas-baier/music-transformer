@@ -50,7 +50,7 @@ else:
     print(">> generate with decoder wise... beam size is {}".format(beam))
     mt = MusicTransformerDecoder(loader_path=load_path)
 
-inputs = encode_midi('dataset/midi/BENABD10.mid')
+inputs = encode_midi('test.midi')
 
 
 with gen_summary_writer.as_default():
