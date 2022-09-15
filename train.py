@@ -9,6 +9,7 @@ import utils
 import argparse
 import datetime
 import sys
+import time
 
 tf.executing_eagerly()
 
@@ -72,6 +73,7 @@ eval_summary_writer = tf.summary.create_file_writer(eval_log_dir)
 # Train Start
 idx = 0
 for e in range(epochs):
+    current_time = time.time()
     mt.reset_metrics()
     for b in range(len(dataset.files) // batch_size):
         try:
@@ -112,5 +114,6 @@ for e in range(epochs):
             print('Epoch/Batch: {}/{}'.format(e, b))
             print('Train >>>> Loss: {:6.6}, Accuracy: {}'.format(result_metrics[0], result_metrics[1]))
             print('Eval >>>> Loss: {:6.6}, Accuracy: {}'.format(eval_result_metrics[0], eval_result_metrics[1]))
+            print(f'Epoch duration: {time.time() - current_time}')
 
 
